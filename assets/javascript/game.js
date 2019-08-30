@@ -11,3 +11,9 @@ var words = [
     "barricade",
     "brawl",
 ]
+
+var word = words[Math.floor(Math.random() * words.length)];
+
+for (var i = 0; i < word.length; i++) {
+    answerArray[i] = "_";
+}
