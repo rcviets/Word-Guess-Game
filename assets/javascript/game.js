@@ -28,4 +28,4 @@ for (var i = 0; i < currentWord.length; i++) {
 
 var remainingLetters = currentWord.length;
 
-while (remainingLetters > 0) 
+while (remainingLetters > 0);
