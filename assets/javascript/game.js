@@ -40,7 +40,6 @@ document.getElementById(you-win).style.cssText = "display: none";
 document.getElementById(you-lose).style.cssText = "display: none";
 
 updateDisplay();
-
 };
 
 function updateDisplay() {
@@ -57,5 +56,19 @@ function updateDisplay() {
         document.getElementById("you-lose").style.cssText = "display: block";
         document.getElementById("play-again").style.cssText = "display: block";
         gameFinish = true;
+    }
+};
+
+
+
+document.onkeyup = function(event) {
+    if(gameFinish) {
+        resetGame();
+        gameFinish = false;
+    }
+    else {
+        if(event.keyCode >= 65 && event.keyCode <= 90) {
+            makeGuess(event.key.toLowerCase());
+        }
     }
 };
