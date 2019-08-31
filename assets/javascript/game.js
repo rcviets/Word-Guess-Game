@@ -42,3 +42,20 @@ document.getElementById(you-lose).style.cssText = "display: none";
 updateDisplay();
 
 };
+
+function updateDisplay() {
+    document.getElementById("totalWins").innerText = wins;
+    document.getElementById("currentWord").innerText = "";
+
+    for (var i = 0; i < words.length; i++) {
+        document.getElementById("currentWord").innerText += secretWord[i];
+    }
+    document.getElementById("remainingGuesses").innerText = remainingGuesses;
+    document.getElementById("lettersGuessed").innerText = lettersGuessed;
+
+    if (remainingGuesses <= 0) {
+        document.getElementById("you-lose").style.cssText = "display: block";
+        document.getElementById("play-again").style.cssText = "display: block";
+        gameFinish = true;
+    }
+};
