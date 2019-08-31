@@ -6,6 +6,7 @@
     <title>Word Guess!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" src="assets/css/style.css">
+    <script src="assets/javascript/game.js"></script>
 </head>
 
 <body background="assets/images/carbon_fibre.png">
@@ -16,11 +17,31 @@
             <p class="lead text-center">Guess the word in 6 guesses!</p>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 gameplay-column">
+                <img id="you-win" src="#" alt="You Win!">
+                <img id="you-lose" src="#" alt="You Lose!">
+                <img id="hint" src="#" alt="Hint!">
+                <img id="play-again" src="#" alt="Play Again?">
+            </div>
+            <div class="col-md-6 gameplay-column">
+                <h2>Press Any Key to Play!</h2>
+                <h4>Wins!</h4>
+                <h5 id="totalWins"></h5>
+                <h4>Losses!</h4>
+                <h5 id="totalLosses"></h5>
+                <h4>Current Word</h4>
+                <h3 id="currentWord"></h3>
+                <h4>Remaining Guesses</h4>
+                <h3 id="remainingGuesses"></h3>
+                <h4>Letters Guessed</h4>
+                <h3 id="lettersGuessed"></h3>
+            </div>
+        </div>
+    </div>
 
 
-    <script src="assets/javascript/game.js">
-
-    </script>
 </body>
 
 </html>

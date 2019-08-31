@@ -11,10 +11,21 @@ var words = [
     "barricade",
     "brawl",
 ]
+var wrongGuesses = 0;
+var limit = 6;
+var playing = false;
 
-var word = words[Math.floor(Math.random() * words.length)];
+function play () {
+
+    var currentWord = words[Math.floor(Math.random() * words.length)];
+}
+
 
 var answerArray = [];
-for (var i = 0; i < word.length; i++) {
+for (var i = 0; i < currentWord.length; i++) {
     answerArray[i] = "_";
 }
+
+var remainingLetters = currentWord.length;
+
+while (remainingLetters > 0) 
