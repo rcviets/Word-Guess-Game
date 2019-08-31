@@ -42,4 +42,3 @@ document.getElementById(you-lose).style.cssText = "display: none";
 updateDisplay();
 
 };
-
