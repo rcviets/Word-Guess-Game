@@ -1,3 +1,4 @@
+// Word List
 var words = [
     "overlord",
     "decepticon",
@@ -11,28 +12,30 @@ var words = [
     "barricade",
     "brawl",
 ]
-var limit = 6;
 
-var lettersGuessed = [];
-var currentWordIndex;
-var secretWord = [];
-var remainingGuesses = [];
-var gameStarted = false;
-var gameFinish = false;
-var wins = 0;
-var losses = 0;
+var attemptLimit = 6; //maximum number of tries
+var lettersGuessed = []; //stores the letters already guessed
+var secretWord; //index of the current word in the 'words'array
+var wordGuess = []; //word built as player guesses pieces of secretWord correctly
+var remainingGuesses = 0; //amount of tries remaining
+var gameStarted = false; //flags the game when started
+var gameFinish = false; //flag for restart game function
+var wins = 0; //how many wins player has
+var losses = 0; //how many losses player has
+
+//Set up variables for the start of the game
 
 function resetGame() {
-    remainingGuesses = limit;
+    remainingGuesses = attempLimit;
     gameStarted = false;
 
-    currentWordIndex = Math.floor(Math.random() * (words.length));
+    secretWord = Math.floor(Math.random() * (words.length));
 
     lettersGuessed = [];
-    secretWord = [];
+    wordGuess = [];
 
-    for (var i = 0; i < words[currentWordIndex].length; i++) {
-        secretWord.push("_");
+    for (var i = 0; i < words[secretWord].length; i++) {
+        wordGuess.push("_");
     }
     //document.getElementById(play - again).style.cssText = "display: none";
     //document.getElementById(hint).style.cssText = "display: none";
@@ -42,23 +45,27 @@ function resetGame() {
     updateDisplay();
 };
 
+//Update the display on HTML page
+
 function updateDisplay() {
     document.getElementById("totalWins").innerText = wins;
     document.getElementById("totalLosses").innerText = losses;
-    document.getElementById("currentWord").innerText = "";
 
-    for (var i = 0; i < words.length; i++) {
-        document.getElementById("currentWord").innerText += secretWord[i];
+    var wordGuessText = "";
+    for (var i = 0; i < wordGuess.length; i++) {
+        wordGuessText += wordGuess[i];
     }
+    document.getElementById("currentWord").innerText = wordGuessText;
     document.getElementById("remainingGuesses").innerText = remainingGuesses;
     document.getElementById("lettersGuessed").innerText = lettersGuessed;
 
-    if (remainingGuesses <= 0) {
+};
+
+   // if (remainingGuesses <= 0) {
       //  document.getElementById("you-lose").style.cssText = "display: block";
        // document.getElementById("play-again").style.cssText = "display: block";
-        gameFinish = true;
-    }
-};
+     //   gameFinish = true;
+   // }
 
 document.onkeyup = function (event) {
     var keyPress = event.key
