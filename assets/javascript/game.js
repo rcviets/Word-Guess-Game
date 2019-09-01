@@ -34,10 +34,10 @@ function resetGame() {
     for (var i = 0; i < words[currentWordIndex].length; i++) {
         secretWord.push("_");
     }
-    document.getElementById(play - again).style.cssText = "display: none";
-    document.getElementById(hint).style.cssText = "display: none";
-    document.getElementById(you - win).style.cssText = "display: none";
-    document.getElementById(you - lose).style.cssText = "display: none";
+    //document.getElementById(play - again).style.cssText = "display: none";
+    //document.getElementById(hint).style.cssText = "display: none";
+    //document.getElementById(you - win).style.cssText = "display: none";
+    //document.getElementById(you - lose).style.cssText = "display: none";
 
     updateDisplay();
 };
@@ -54,17 +54,11 @@ function updateDisplay() {
     document.getElementById("lettersGuessed").innerText = lettersGuessed;
 
     if (remainingGuesses <= 0) {
-        document.getElementById("you-lose").style.cssText = "display: block";
-        document.getElementById("play-again").style.cssText = "display: block";
+      //  document.getElementById("you-lose").style.cssText = "display: block";
+       // document.getElementById("play-again").style.cssText = "display: block";
         gameFinish = true;
     }
 };
-
-// function makeGuess(letter) {
-//     if (remainingGuesses > 0) {
-//         if 
-//     }
-// }
 
 document.onkeyup = function (event) {
     var keyPress = event.key
@@ -106,5 +100,12 @@ function checkGuess(letter) {
         for (var i = 0; i < positions.length; i++) {
             secretWord[positions[i]] = letter;
         }
+    }
+};
+
+function checkWin() {
+    if (secretWord.indexOf("_") === -1) {
+        wins++;
+        hasFinished = true;
     }
 };
