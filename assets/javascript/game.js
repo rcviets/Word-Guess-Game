@@ -44,6 +44,7 @@ updateDisplay();
 
 function updateDisplay() {
     document.getElementById("totalWins").innerText = wins;
+    document.getElementById("totalLosses").innerText = losses;
     document.getElementById("currentWord").innerText = "";
 
     for (var i = 0; i < words.length; i++) {
@@ -59,16 +60,38 @@ function updateDisplay() {
     }
 };
 
-
+// function makeGuess(letter) {
+//     if (remainingGuesses > 0) {
+//         if 
+//     }
+// }
 
 document.onkeyup = function(event) {
-    if(gameFinish) {
-        resetGame();
-        gameFinish = false;
-    }
-    else {
-        if(event.keyCode >= 65 && event.keyCode <= 90) {
-            makeGuess(event.key.toLowerCase());
+    var keyPress = event.key
+    console.log(keyPress)
+     if(gameFinish) {
+         resetGame();
+         gameFinish = false;
+     }
+     else {
+         if(event.keyCode >= 65 && event.keyCode <= 90) {
+             makeGuess(event.key.toLowerCase());
+         }
+     }
+};
+
+function makeGuess(letter) {
+    if (remainingGuesses > 0) {
+        if(!gameStarted) {
+            gameStarted = true;
         }
     }
+updateDisplay();
+checkWin();
 };
+
+//function checkGuess(letter) {
+   // var positions = [];
+
+   // for (var = 0; i < words)
+//}

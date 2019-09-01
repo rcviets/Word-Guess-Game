@@ -1,8 +1,9 @@
+
 .container {
     text-align: center;
 }
 .gameplay-column {
-    margin: 10px;
+    float: left;
     padding: 10px;
     border: 3px dashed white;
     text-align: center;
@@ -11,7 +12,7 @@
 }
 h2, h3, h4, h5 {
     padding: 5px;
-    background-color: aqua;
+    background-color: darkgray;
     color: white;
     text-align: center;
 }
