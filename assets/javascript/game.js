@@ -61,41 +61,12 @@ function updateDisplay() {
 
 };
 
-   // if (remainingGuesses <= 0) {
-      //  document.getElementById("you-lose").style.cssText = "display: block";
-       // document.getElementById("play-again").style.cssText = "display: block";
-     //   gameFinish = true;
-   // }
-
-document.onkeyup = function (event) {
-    var keyPress = event.key
-    console.log(keyPress)
-    if (gameFinish) {
-        resetGame();
-        gameFinish = false;
-    }
-    else {
-        if (event.keyCode >= 65 && event.keyCode <= 90) {
-            makeGuess(event.key.toLowerCase());
-        }
-    }
-};
-
-function makeGuess(letter) {
-    if (remainingGuesses > 0) {
-        if (!gameStarted) {
-            gameStarted = true;
-        }
-    }
-    updateDisplay();
-    checkWin();
-};
-
+// find letter in secretWord, and push that into "_"
 function checkGuess(letter) {
     var positions = [];
 
-    for (var i = 0; i < words[currentWordIndex].length; i++) {
-        if (words[cureentWordIndex][i] === letter) {
+    for (var i = 0; i < words[secretWord].length; i++) {
+        if (words[secretWord][i] === letter) {
             positions.push(i);
         }
     }
@@ -105,14 +76,58 @@ function checkGuess(letter) {
     }
     else {
         for (var i = 0; i < positions.length; i++) {
-            secretWord[positions[i]] = letter;
+            wordGuess[positions[i]] = letter;
         }
     }
 };
 
+// check if the game has been won
 function checkWin() {
-    if (secretWord.indexOf("_") === -1) {
+    if (wordGuess.indexOf("_") === -1) {
         wins++;
         hasFinished = true;
     }
 };
+
+// check if the game has been lost
+function checkLoss() {
+    if (wordGuess.indexOf("_") === -1) {
+        losses++;
+        hasFinished = true;
+    }
+};
+
+function makeGuess(letter) {
+    if (remainingGuesses > 0) {
+        if (lettersGuessed.indexOf(letter) === -1) {
+            lettersGuessed.push(letter);
+            checkGuess(letter);
+        }
+    }
+};
+
+   // key up function
+   document.onkeyup = function (event) {
+    var keyPress = event.key
+    console.log(keyPress)
+    if (gameFinish) {
+        resetGame();
+        gameFinish = false;
+    }
+    else {
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
+            makeGuess(event.key.toLowerCase());
+            updateDisplay();
+            checkWin();
+            checkLoss();
+        }
+    }
+};
+
+   // if (remainingGuesses <= 0) {
+      //  document.getElementById("you-lose").style.cssText = "display: block";
+       // document.getElementById("play-again").style.cssText = "display: block";
+     //   gameFinish = true;
+   // }
+
+
