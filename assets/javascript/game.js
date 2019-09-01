@@ -26,20 +26,20 @@ function resetGame() {
     remainingGuesses = limit;
     gameStarted = false;
 
-currentWordIndex = Math.floor(Math.random() * (words.length));
+    currentWordIndex = Math.floor(Math.random() * (words.length));
 
-lettersGuessed = [];
-secretWord = [];
+    lettersGuessed = [];
+    secretWord = [];
 
-for (var i = 0; i < words[currentWordIndex].length; i++) {
-    secretWord.push("_");
-}
-document.getElementById(play-again).style.cssText = "display: none";
-document.getElementById(hint).style.cssText = "display: none";
-document.getElementById(you-win).style.cssText = "display: none";
-document.getElementById(you-lose).style.cssText = "display: none";
+    for (var i = 0; i < words[currentWordIndex].length; i++) {
+        secretWord.push("_");
+    }
+    document.getElementById(play - again).style.cssText = "display: none";
+    document.getElementById(hint).style.cssText = "display: none";
+    document.getElementById(you - win).style.cssText = "display: none";
+    document.getElementById(you - lose).style.cssText = "display: none";
 
-updateDisplay();
+    updateDisplay();
 };
 
 function updateDisplay() {
@@ -66,32 +66,45 @@ function updateDisplay() {
 //     }
 // }
 
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
     var keyPress = event.key
     console.log(keyPress)
-     if(gameFinish) {
-         resetGame();
-         gameFinish = false;
-     }
-     else {
-         if(event.keyCode >= 65 && event.keyCode <= 90) {
-             makeGuess(event.key.toLowerCase());
-         }
-     }
+    if (gameFinish) {
+        resetGame();
+        gameFinish = false;
+    }
+    else {
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
+            makeGuess(event.key.toLowerCase());
+        }
+    }
 };
 
 function makeGuess(letter) {
     if (remainingGuesses > 0) {
-        if(!gameStarted) {
+        if (!gameStarted) {
             gameStarted = true;
         }
     }
-updateDisplay();
-checkWin();
+    updateDisplay();
+    checkWin();
 };
 
-//function checkGuess(letter) {
-   // var positions = [];
+function checkGuess(letter) {
+    var positions = [];
 
-   // for (var = 0; i < words)
-//}
+    for (var i = 0; i < words[currentWordIndex].length; i++) {
+        if (words[cureentWordIndex][i] === letter) {
+            positions.push(i);
+        }
+    }
+
+    if (positions.length <= 0) {
+        remainingGuesses--;
+    }
+    else {
+        for (var i = 0; i < positions.length; i++) {
+            secretWord[positions[i]] = letter;
+        }
+    }
+};
