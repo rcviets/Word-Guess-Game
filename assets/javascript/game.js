@@ -94,7 +94,7 @@ function endGame() {
         document.getElementById("totalLosses").innerHTML = " " + losses;
     }
     document.getElementById("currentWord").innerHTML = " " + spotsRight.join(" ");
-    document.getElementById("remainingGuesses").innerHTML = " " + guessesRemaining.join;
+    document.getElementById("remainingGuesses").innerHTML = " " + guessesRemaining;
 }
 
 //Run the Game
