@@ -53,80 +53,32 @@ function startGame() {
     console.log(spotsAndRight)
 }
 
-var wordGuessText = "_";
-for (var i = 0; i < wordGuess.length; i++) {
-    wordGuessText += wordGuess[i];
-}
-
 // Game Reset
 function reset() {
-    
+    guessesRemaining = 10;
+    wrongGuess = [];
+    spotsAndRight = [];
+    startGame()
 }
-// find letter in secretWord, and push that into "_"
+
+// Check Guess
 function checkGuess(letter) {
-    var positions = [];
-
-    for (var i = 0; i < words[secretWord].length; i++) {
-        if (words[secretWord][i] === letter) {
-            positions.push(i);
+    var wordLetters = false
+    for (var i = 0; i < spots; i++) {
+        if (secretWord[i] === letter) {
+            wordLetters = true;
         }
     }
-
-    if (positions.length <= 0) {
-        remainingGuesses--;
+    if (wordLetters) {
+        for (var i = 0; i < blanks; i++) {
+            if (randomWord[i] === letter) {
+                spotsAndRight[i] = letter;
+            }
+        }
     }
     else {
-        for (var i = 0; i < positions.length; i++) {
-            wordGuess[positions[i]] = letter;
-        }
+        wrongGuess.push(letter);
+        guessesRemaining--;
     }
-};
-
-// check if the game has been won
-function checkWin() {
-    if (wordGuess.indexOf("_") === -1) {
-        wins++;
-        hasFinished = true;
-    }
-};
-
-// check if the game has been lost
-function checkLoss() {
-    if (wordGuess.indexOf("_") === -1) {
-        losses++;
-        hasFinished = true;
-    }
-};
-
-function makeGuess(letter) {
-    if (remainingGuesses > 0) {
-        if (lettersGuessed.indexOf(letter) === -1) {
-            lettersGuessed.push(letter);
-            checkGuess(letter);
-        }
-    }
-};
-
-// key up function
-document.onkeydown = function (event) {
-    var keyPress = event.key
-    console.log(keyPress)
-    if (gameFinish) {
-        startGame();
-        gameFinish = false;
-    }
-    else {
-        if (event.keyCode >= 65 && event.keyCode <= 90) {
-            makeGuess(event.key.toLowerCase());
-            updateDisplay();
-            checkWin();
-            checkLoss();
-        }
-    }
-};
-
-    // if (remainingGuesses <= 0) {
-    //  document.getElementById("you-lose").style.cssText = "display: block";
-    // document.getElementById("play-again").style.cssText = "display: block";
-    //   gameFinish = true;
-    // }
+    console.log(spotsAndRight);
+}
