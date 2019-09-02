@@ -18,7 +18,7 @@ console.log(words)
 var secretWord = []; //random word that has been selected
 var secretLetters = []; //letters of random word
 var spots = 0;
-var spotsAndRight = [];
+var spotsRight = [];
 var wrongGuess = [];
 
 //Counter Variables
@@ -31,43 +31,44 @@ var guessesRemaining = 10;
 
 function startGame() {
 
-    var secretWord = Math.floor(Math.random() * (words.length));
-    var secretLetters = secretWord.split("");
-
+    secretWord = words[Math.floor(Math.random() * words.length)];
+    secretLetters = secretWord.split("");
+    spots = secretLetters.length;
 
     for (var i = 0; i < spots; i++) {
-        spotsAndRight.push("_");
+        spotsRight.push("_");
     }
 
     // Update HTML
-    document.getElementById("currentWord").innerHTML = " " + spotsAndRight.join(" ");
+    document.getElementById("currentWord").innerHTML = " " + spotsRight.join(" ");
 
     console.log(secretWord)
     console.log(secretLetters)
     console.log(spots)
-    console.log(spotsAndRight)
+    console.log(spotsRight)
 }
 
 // Game Reset
 function reset() {
     guessesRemaining = 10;
     wrongGuess = [];
-    spotsAndRight = [];
+    spotsRight = [];
     startGame()
 }
 
 // Check Guess
 function checkGuess(letter) {
     var wordLetters = false
+
     for (var i = 0; i < spots; i++) {
         if (secretWord[i] === letter) {
             wordLetters = true;
         }
     }
     if (wordLetters) {
-        for (var i = 0; i < blanks; i++) {
-            if (randomWord[i] === letter) {
-                spotsAndRight[i] = letter;
+        for (var i = 0; i < spots; i++) {
+            if (secretWord[i] === letter) {
+                spotsRight[i] = letter;
             }
         }
     }
@@ -75,14 +76,14 @@ function checkGuess(letter) {
         wrongGuess.push(letter);
         guessesRemaining--;
     }
-    console.log(spotsAndRight);
+    console.log(spotsRight);
 }
 
 // Check Wins and Losses
 function endGame() {
-    console.log("Wins:" + wins + "| Losses:" + losses + "| Remaining Gueses:" + guessesRemaining)
+    console.log("Wins:" + wins + "| Losses:" + losses + "| Remaining Guesses:" + guessesRemaining)
 
-    if (secretLetters.toString() == spotsAndRight.toString()) {
+    if (secretLetters.toString() == spotsRight.toString()) {
         wins++
         reset()
         document.getElementById("totalWins").innerHTML = " " + wins;
@@ -92,6 +93,17 @@ function endGame() {
         reset()
         document.getElementById("totalLosses").innerHTML = " " + losses;
     }
-    document.getElementById("curretnWord").innerHTML = " " + spotsAndRight.join(" ");
+    document.getElementById("currentWord").innerHTML = " " + spotsRight.join(" ");
     document.getElementById("remainingGuesses").innerHTML = " " + guessesRemaining.join;
+}
+
+//Run the Game
+startGame()
+
+document.onkeyup = function (event) {
+    var guess = String.fromCharCode(event.keyCode).toLowerCase();
+    checkGuess(guess);
+    endGame();
+    console.log(guess);
+    document.getElementById("lettersGuessed").innerHTML = " " + wrongGuess.join(" ");
 }
