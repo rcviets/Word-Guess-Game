@@ -24,7 +24,7 @@ var wrongGuess = [];
 //Counter Variables
 var wins = 0;
 var losses = 0;
-var guessesRemaing = 10;
+var guessesRemaining = 10;
 
 
 //Set up variables for the start of the game
@@ -34,39 +34,34 @@ function startGame() {
 
     var secretWord = Math.floor(Math.random() * (words.length));
     var secretLetters = secretWord.split("");
-    console.log(secretWord)
+
 
     for (var i = 0; i < spots; i++) {
         spotsAndRight.push("_");
-
-
     }
     //document.getElementById(play - again).style.cssText = "display: none";
     //document.getElementById(hint).style.cssText = "display: none";
     //document.getElementById(you - win).style.cssText = "display: none";
     //document.getElementById(you - lose).style.cssText = "display: none";
 
-    updateDisplay();
-};
+    // Update HTML
+    document.getElementById("currentWord").innerHTML = " " + spotsAndRight.join(" ");
 
-console.log(startGame)
-
-//Update the display on HTML page
-
-function updateDisplay() {
-    document.getElementById("totalWins").innerText = wins;
-    document.getElementById("totalLosses").innerText = losses;
-    document.getElementById("currentWord").innerText = wordGuessText;
-    document.getElementById("remainingGuesses").innerText = remainingGuesses;
-    document.getElementById("lettersGuessed").innerText = lettersGuessed;
-
-};
+    console.log(secretWord)
+    console.log(secretLetters)
+    console.log(spots)
+    console.log(spotsAndRight)
+}
 
 var wordGuessText = "_";
 for (var i = 0; i < wordGuess.length; i++) {
     wordGuessText += wordGuess[i];
 }
 
+// Game Reset
+function reset() {
+    
+}
 // find letter in secretWord, and push that into "_"
 function checkGuess(letter) {
     var positions = [];
