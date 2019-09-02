@@ -12,30 +12,34 @@ var words = [
     "barricade",
     "brawl",
 ]
+console.log(words)
 
-var attemptLimit = 6; //maximum number of tries
-var lettersGuessed = []; //stores the letters already guessed
-var secretWord; //index of the current word in the 'words'array
-var wordGuess = []; //word built as player guesses pieces of secretWord correctly
-var remainingGuesses = 0; //amount of tries remaining
-var gameStarted = false; //flags the game when started
-var gameFinish = false; //flag for restart game function
-var wins = 0; //how many wins player has
-var losses = 0; //how many losses player has
+//Empty Variables
+var secretWord = []; //random word that has been selected
+var secretLetters = []; //letters of random word
+var spots = 0;
+var spotsAndRight = [];
+var wrongGuess = [];
+
+//Counter Variables
+var wins = 0;
+var losses = 0;
+var guessesRemaing = 10;
+
 
 //Set up variables for the start of the game
 
-function resetGame() {
-    remainingGuesses = attempLimit;
-    gameStarted = false;
+function startGame() {
 
-    secretWord = Math.floor(Math.random() * (words.length));
 
-    lettersGuessed = [];
-    wordGuess = [];
+    var secretWord = Math.floor(Math.random() * (words.length));
+    var secretLetters = secretWord.split("");
+    console.log(secretWord)
 
-    for (var i = 0; i < words[secretWord].length; i++) {
-        wordGuess.push("_");
+    for (var i = 0; i < spots; i++) {
+        spotsAndRight.push("_");
+
+
     }
     //document.getElementById(play - again).style.cssText = "display: none";
     //document.getElementById(hint).style.cssText = "display: none";
@@ -45,21 +49,23 @@ function resetGame() {
     updateDisplay();
 };
 
+console.log(startGame)
+
 //Update the display on HTML page
 
 function updateDisplay() {
     document.getElementById("totalWins").innerText = wins;
     document.getElementById("totalLosses").innerText = losses;
-
-    var wordGuessText = "";
-    for (var i = 0; i < wordGuess.length; i++) {
-        wordGuessText += wordGuess[i];
-    }
     document.getElementById("currentWord").innerText = wordGuessText;
     document.getElementById("remainingGuesses").innerText = remainingGuesses;
     document.getElementById("lettersGuessed").innerText = lettersGuessed;
 
 };
+
+var wordGuessText = "_";
+for (var i = 0; i < wordGuess.length; i++) {
+    wordGuessText += wordGuess[i];
+}
 
 // find letter in secretWord, and push that into "_"
 function checkGuess(letter) {
@@ -106,12 +112,12 @@ function makeGuess(letter) {
     }
 };
 
-   // key up function
-   document.onkeyup = function (event) {
+// key up function
+document.onkeydown = function (event) {
     var keyPress = event.key
     console.log(keyPress)
     if (gameFinish) {
-        resetGame();
+        startGame();
         gameFinish = false;
     }
     else {
@@ -124,10 +130,8 @@ function makeGuess(letter) {
     }
 };
 
-   // if (remainingGuesses <= 0) {
-      //  document.getElementById("you-lose").style.cssText = "display: block";
-       // document.getElementById("play-again").style.cssText = "display: block";
-     //   gameFinish = true;
-   // }
-
-
+    // if (remainingGuesses <= 0) {
+    //  document.getElementById("you-lose").style.cssText = "display: block";
+    // document.getElementById("play-again").style.cssText = "display: block";
+    //   gameFinish = true;
+    // }
