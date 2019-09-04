@@ -1,10 +1,8 @@
 // Word List
 var words = [
-    "overlord",
     "decepticon",
     "cybertron",
     "allspark",
-    "domination",
     "assimilation",
     "megatron",
     "starscream",
@@ -47,6 +45,9 @@ function startGame() {
     console.log(spots)
     console.log(spotsRight)
 }
+
+// Winning Images
+
 
 // Game Reset
 function reset() {
