@@ -17,6 +17,7 @@ p {
 #image {
     position: relative;
     width: 90%;
+    height: 75%;
     top: 50px;
     opacity: 0.5;
 }

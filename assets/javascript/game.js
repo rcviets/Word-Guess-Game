@@ -49,9 +49,9 @@ function startGame() {
 // Winning Images
 function img () {
     if (secretWord === words[0]) {
-        document.getElementById("image").src="../assets/images/decepticon.jpg";
+        document.getElementById("image").src="assets/images/decepticon.jpg";
     }    
-    console.log
+    console.log(image)
 }
 
 // Game Reset
