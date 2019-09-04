@@ -47,7 +47,12 @@ function startGame() {
 }
 
 // Winning Images
-
+function img () {
+    if (secretWord === words[0]) {
+        document.getElementById("image").src="../assets/images/decepticon.jpg";
+    }    
+    console.log
+}
 
 // Game Reset
 function reset() {
@@ -86,6 +91,7 @@ function endGame() {
 
     if (secretLetters.toString() == spotsRight.toString()) {
         wins++
+        img()
         reset()
         document.getElementById("totalWins").innerHTML = " " + wins;
     }
