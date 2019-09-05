@@ -79,6 +79,11 @@ function img () {
     console.log(image)
 }
 
+//Loss Image
+function lossImg () {
+    document.getElementById("image").src="assets/images/loss.jpg";
+}
+
 // Game Reset
 function reset() {
     guessesRemaining = 10;
@@ -122,6 +127,7 @@ function endGame() {
     }
     else if (guessesRemaining === 0) {
         losses++;
+        lossImg()
         reset()
         document.getElementById("totalLosses").innerHTML = " " + losses;
     }
