@@ -119,7 +119,7 @@ function checkGuess(letter) {
 function endGame() {
     console.log("Wins:" + wins + "| Losses:" + losses + "| Remaining Guesses:" + guessesRemaining)
 
-    if (secretLetters.toString() == spotsRight.toString()) {
+    if (secretLetters.toString() === spotsRight.toString()) {
         wins++
         img()
         reset()
